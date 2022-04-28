@@ -30,7 +30,7 @@ class GoodCensor {
         return this.badwords;
     }
     censor(text,currentOptions={}){
-        const options = mergeOptions(this.#defaultOptions,currentOptions);
+        const options = mergeOptions(this.defaultOptions,currentOptions);
         
         if(typeof text != 'string') return '';
     
