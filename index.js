@@ -14,7 +14,7 @@ class GoodCensor {
     defaultOptions
     constructor(words=[],defaultOptions={}){
         this.badwords = words;
-        this.#defaultOptions = defaultOptions;
+        this.defaultOptions = defaultOptions;
     }
     set badwords(input){
         if(typeof input == 'string') input = input.split(/\s/g);
@@ -23,11 +23,11 @@ class GoodCensor {
         .filter(v => typeof v == 'string' && v.length > 0)
         .map(v => v.toLowerCase());
 
-        this.#badwords = input;
-        this.#ahocorasick = new ahocorasick(input);
+        this.badwords = input;
+        this.ahocorasick = new ahocorasick(input);
     }
     get badwords(){
-        return this.#badwords;
+        return this.badwords;
     }
     censor(text,currentOptions={}){
         const options = mergeOptions(this.#defaultOptions,currentOptions);
@@ -62,7 +62,7 @@ class GoodCensor {
     
         let PHText = text.toLowerCase(); // "placeholder"
         if(parsedOptions.censorAccents) PHText = accents.remove(PHText);
-        const results = this.#ahocorasick.search(PHText);
+        const results = this.ahocorasick.search(PHText);
         const parsedResults = parseResults(
             results,
             parsedOptions.censorLongest
