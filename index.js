@@ -9,9 +9,9 @@ const {
 } = require('./utils');
 
 class GoodCensor {
-    #badwords
-    #ahocorasick
-    #defaultOptions
+    badwords
+    ahocorasick
+    defaultOptions
     constructor(words=[],defaultOptions={}){
         this.badwords = words;
         this.#defaultOptions = defaultOptions;
