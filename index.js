@@ -12,20 +12,9 @@ class GoodCensor {
     constructor(words=[],defaultOptions={}){
         this.badwords = words;
         this.defaultOptions = defaultOptions;
+        this.ahocorasick = new ahocorasick(words);
     }
-    set badwords(input){
-        if(typeof input == 'string') input = input.split(/\s/g);
-        if(!Array.isArray(input)) input = [];
-        input = input
-        .filter(v => typeof v == 'string' && v.length > 0)
-        .map(v => v.toLowerCase());
 
-        this.badwords = input;
-        this.ahocorasick = new ahocorasick(input);
-    }
-    get badwords(){
-        return this.badwords;
-    }
     censor(text,currentOptions={}){
         const options = mergeOptions(this.defaultOptions,currentOptions);
         
